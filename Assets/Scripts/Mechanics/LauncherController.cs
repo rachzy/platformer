@@ -23,7 +23,7 @@ namespace Platformer.Mechanics
         // Update is called once per frame
         void Update()
         {
-            if (player.jumpController.isHoldingJumpButton && player.trailController.isOverJumper)
+            if (Input.GetButton("Jump") && player.trailController.isOverJumper)
             {
                 player.trailController.SetTrailGradient(currentLauncherColor);
             }

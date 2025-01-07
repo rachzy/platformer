@@ -16,8 +16,6 @@ namespace Platformer.Mechanics
         public float fallMultiplier;
         [NonSerialized]
         protected bool isJumping;
-        [NonSerialized]
-        public bool isHoldingJumpButton;
 
         public void Start()
         {
@@ -41,18 +39,12 @@ namespace Platformer.Mechanics
             // Button Events
             if (Input.GetButton("Jump"))
             {
-                isHoldingJumpButton = true;
                 if (player.IsGrounded())
                 {
                     jumpCounter = 0;
                     isJumping = true;
                     Simulation.Schedule<PlayerJumped>().jumpController = this;
                 }
-            }
-
-            if (Input.GetButtonUp("Jump"))
-            {
-                isHoldingJumpButton = false;
             }
         }
     }
