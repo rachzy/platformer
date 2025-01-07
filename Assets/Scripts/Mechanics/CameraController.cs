@@ -19,7 +19,7 @@ namespace Platformer.Mechanics
             transform.position = new Vector3(target.transform.position.x + 10, y, -10);
         }
 
-        public void setY(float newY)
+        public void SetY(float newY)
         {
             y = Mathf.Lerp(y, newY, Time.deltaTime * 2f);
         }

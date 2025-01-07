@@ -32,15 +32,14 @@ namespace Platformer.Mechanics
             {
                 isJumping = false;
             }
-
-            // Gravity Events
-            if (body.linearVelocityY < 0 || (body.linearVelocityY > jumpForce && isJumping))
+            else if (body.linearVelocityY < 0 || (body.linearVelocityY > jumpForce && isJumping))
             {
                 body.linearVelocity -= gravityVec * fallMultiplier * Time.deltaTime;
             }
 
+
             // Button Events
-            if (Input.GetButtonDown("Jump") || isHoldingJumpButton)
+            if (Input.GetButton("Jump"))
             {
                 isHoldingJumpButton = true;
                 if (player.IsGrounded())

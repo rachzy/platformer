@@ -1,6 +1,7 @@
 using System;
 using Platformer.Core;
 using Platformer.Gameplay;
+using Platformer.Interfaces;
 using UnityEngine;
 
 namespace Platformer.Mechanics
@@ -43,8 +44,10 @@ namespace Platformer.Mechanics
         public LayerMask groundMask;
 
         /// <summary>
-        /// Misc related
+        /// Flow related
         /// </summary>
+        [NonSerialized]
+        public Flow currentFlow;
 
 
         public void Start()
@@ -53,6 +56,8 @@ namespace Platformer.Mechanics
             trailController = GetComponent<TrailController>();
             jumpController = GetComponent<JumpController>();
             launcherController = GetComponent<LauncherController>();
+
+            currentFlow = levelManager.initialFlow;
         }
 
         public void Update()
@@ -63,6 +68,11 @@ namespace Platformer.Mechanics
             {
                 currentStaticY = body.position.y;
                 UpdateCameraPosition();
+            }
+
+            if (currentFlow != levelManager.currentFlow)
+            {
+                Simulation.Schedule<PlayerChangedFlow>().player = this;
             }
 
             // Position events
@@ -82,7 +92,7 @@ namespace Platformer.Mechanics
         {
             if (camera.target.CompareTag("Player") && camera.y != currentStaticY)
             {
-                camera.setY(currentStaticY);
+                camera.SetY(currentStaticY);
             }
         }
 
