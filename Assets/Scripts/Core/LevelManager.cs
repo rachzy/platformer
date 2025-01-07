@@ -8,6 +8,7 @@ namespace Platformer.Mechanics
     {
         [System.NonSerialized]
         public static LevelManager Instance;
+        public Vector3 defaultGravity = new(0, -9.81f, 0);
         public float DEATH_ZONE_Y = -10;
         public Flow initialFlow = Flow.Default;
         [System.NonSerialized]

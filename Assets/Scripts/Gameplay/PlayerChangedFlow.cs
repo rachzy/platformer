@@ -8,10 +8,11 @@ namespace Platformer.Gameplay
     public class PlayerChangedFlow : Simulation.Event<PlayerChangedFlow>
     {
         public PlayerController player;
-        public Vector3 defaultGravity = new(0, -9.81f, 0);
 
         public override void Execute()
         {
+            var defaultGravity = player.levelManager.defaultGravity;
+
             switch (player.levelManager.currentFlow)
             {
                 case Flow.ReversedGravity:
