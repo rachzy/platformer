@@ -10,14 +10,12 @@ namespace Platformer.Gameplay
         public override void Execute()
         {
             player.levelManager.ResetFlow();
-            Simulation.Schedule<PlayerChangedFlow>().player = player;
 
             var rb = player.body;
             rb.angularVelocity = 0;
             rb.linearVelocityX = 0;
-            rb.transform.position = player.spawnPoint.transform.position;
 
-            player.trailController.trail.Clear();
+            rb.MovePosition(player.spawnPoint.transform.position);
         }
     }
 }
